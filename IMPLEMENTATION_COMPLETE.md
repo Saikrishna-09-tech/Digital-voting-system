@@ -187,7 +187,7 @@ aadhaar: {
 ```
 ✅ Visit /login
 ✅ Select "Admin" toggle
-✅ Use admin credentials (vtu27196@veltech.edu.in)
+✅ Use admin credentials (admin@example.com)
 ✅ Redirect to admin dashboard
 ```
 
