@@ -146,16 +146,14 @@ export const sendOTP = async (req, res) => {
     const responsePayload = {
       message: 'OTP generated',
       sentToEmail: sent,
-      devOtpWarning: !sent && process.env.NODE_ENV === 'production' 
+      devOtpWarning: !sent && process.env.NODE_ENV === 'production'
         ? 'Email not configured - check backend logs'
         : undefined,
     };
 
-    if (process.env.NODE_ENV !== 'production') {
-      responsePayload.otp = otp; // Dev mode: return OTP for testing
-      if (!sent) {
-        responsePayload.message += ' (Email failed, showing OTP for testing)';
-      }
+    if (!sent && process.env.NODE_ENV !== 'production') {
+      responsePayload.otp = otp; // Dev mode: return OTP only when email failed
+      responsePayload.message += ' (Email failed, showing OTP for testing)';
     }
 
     return res.json(responsePayload);
